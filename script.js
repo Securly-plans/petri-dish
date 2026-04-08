@@ -46,9 +46,10 @@ function displayInventory() {
 
     let div = document.createElement("div");
     div.className = `card ${item.rarity}`;
+
     div.innerHTML = `
+      <img src="${microbeImages[microbe]}" class="microbe-img"><br>
       <strong>${microbe}</strong><br>
-      ${item.rarity}<br>
       x${item.count}
     `;
 
