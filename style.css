@@ -90,3 +90,12 @@ button:hover {
   0% { transform: scale(0.7); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
 }
+
+.flash {
+  animation: flash 0.3s;
+}
+
+@keyframes flash {
+  0% { background-color: white; }
+  100% { background-color: transparent; }
+}
