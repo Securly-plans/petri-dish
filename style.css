@@ -95,6 +95,38 @@ button:hover {
   animation: flash 0.3s;
 }
 
+/* Microbe images */
+.microbe-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.reveal-img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+/* Blook-style cards */
+.card {
+  text-align: center;
+  padding: 10px;
+  border-radius: 12px;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Glow effects */
+.Common { box-shadow: 0 0 5px #aaa; }
+.Uncommon { box-shadow: 0 0 10px #27ae60; }
+.Rare { box-shadow: 0 0 12px #2980b9; }
+.Epic { box-shadow: 0 0 15px #8e44ad; }
+.Legendary { box-shadow: 0 0 20px gold; }
+
 #coins {
   font-size: 20px;
   margin-bottom: 15px;
