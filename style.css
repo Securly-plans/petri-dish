@@ -1,36 +1,71 @@
 body {
-  font-family: Arial;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
+}
+
+.container {
   text-align: center;
-  background-color: #0b1f1f;
-  color: #d4fff7;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.pack-box {
+  background: #1e2a38;
+  padding: 20px;
+  border-radius: 15px;
+  width: 300px;
+  margin: 0 auto;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
 button {
-  padding: 15px 25px;
+  padding: 12px 20px;
   font-size: 16px;
-  background-color: #00c9a7;
   border: none;
   border-radius: 10px;
+  background: #00c9a7;
+  color: white;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 button:hover {
-  background-color: #00a98a;
+  transform: scale(1.05);
+  background: #00a98a;
 }
 
 #result {
-  margin-top: 20px;
-  font-size: 20px;
+  margin-top: 15px;
+  font-size: 18px;
 }
 
+/* Inventory grid */
 #inventory {
   margin-top: 30px;
 }
 
-#inventory div {
-  background: #123;
-  margin: 5px auto;
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
   padding: 10px;
-  width: 200px;
-  border-radius: 8px;
 }
+
+/* Card style */
+.card {
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* Rarity colors */
+.Common { background: #7f8c8d; }
+.Uncommon { background: #27ae60; }
+.Rare { background: #2980b9; }
+.Epic { background: #8e44ad; }
+.Legendary { background: gold; color: black; font-weight: bold; }
