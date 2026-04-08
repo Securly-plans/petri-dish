@@ -2,18 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Micro Pack Opener</title>
+  <title>Microscope.net</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>🦠 Micro Pack Opener</h1>
+  <div class="container">
+    <h1>🦠 Microscope.net</h1>
 
-  <button onclick="openPack()">Open Petri Pack</button>
+    <div class="pack-box">
+      <p>Open a Petri Pack!</p>
+      <button onclick="openPack()">Open Pack</button>
+      <div id="result"></div>
+    </div>
 
-  <div id="result"></div>
-  <div id="inventory"></div>
-  
+    <div id="inventory"></div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
