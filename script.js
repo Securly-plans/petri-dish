@@ -10,32 +10,55 @@ const microbes = {
 let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
 
 function openPack() {
-  let roll = Math.random();
-  let rarity;
+  const resultDiv = document.getElementById("result");
+  const button = document.querySelector("button");
 
-  if (roll < 0.60) rarity = "Common";
-  else if (roll < 0.85) rarity = "Uncommon";
-  else if (roll < 0.95) rarity = "Rare";
-  else if (roll < 0.99) rarity = "Epic";
-  else rarity = "Legendary";
+  button.disabled = true;
 
-  let pool = microbes[rarity];
-  let reward = pool[Math.floor(Math.random() * pool.length)];
+  const rarities = ["Common", "Uncommon", "Rare", "Epic", "Legendary"];
+  let spinCount = 0;
 
-  // Add to inventory
-  if (!inventory[reward]) {
-    inventory[reward] = { count: 1, rarity: rarity };
-  } else {
-    inventory[reward].count++;
-  }
+  let animation = setInterval(() => {
+    let randomRarity = rarities[Math.floor(Math.random() * rarities.length)];
+    resultDiv.innerHTML = `Rolling... <span class="${randomRarity}">${randomRarity}</span>`;
+    spinCount++;
 
-  // Save inventory
-  localStorage.setItem("inventory", JSON.stringify(inventory));
+    if (spinCount > 15) { // how long it spins
+      clearInterval(animation);
 
-  document.getElementById("result").innerHTML =
-    `You got a <b>${rarity}</b>: ${reward}`;
+      // FINAL RNG
+      let roll = Math.random();
+      let rarity;
 
-  displayInventory();
+      if (roll < 0.60) rarity = "Common";
+      else if (roll < 0.85) rarity = "Uncommon";
+      else if (roll < 0.95) rarity = "Rare";
+      else if (roll < 0.99) rarity = "Epic";
+      else rarity = "Legendary";
+
+      let pool = microbes[rarity];
+      let reward = pool[Math.floor(Math.random() * pool.length)];
+
+      // Add to inventory
+      if (!inventory[reward]) {
+        inventory[reward] = { count: 1, rarity: rarity };
+      } else {
+        inventory[reward].count++;
+      }
+
+      localStorage.setItem("inventory", JSON.stringify(inventory));
+
+      // FINAL DISPLAY
+      resultDiv.innerHTML = `
+        <div class="reveal ${rarity}">
+          ${rarity}!<br>${reward}
+        </div>
+      `;
+
+      button.disabled = false;
+      displayInventory();
+    }
+  }, 100);
 }
 
 function displayInventory() {
