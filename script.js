@@ -144,11 +144,13 @@ function openPack() {
       }
 
       // 🎉 SHOW RESULT
-      resultDiv.innerHTML = `
-        <div class="reveal ${rarity}">
-          ${rarity}!<br>${reward}
-        </div>
-      `;
+     resultDiv.innerHTML = `
+  <div class="reveal ${rarity}">
+    <img src="${microbeImages[reward]}" class="reveal-img"><br>
+    <div>${rarity}</div>
+    <strong>${reward}</strong>
+  </div>
+`;
 
       button.disabled = false;
       displayInventory();
