@@ -133,3 +133,4 @@ updateCoinsDisplay();
 
 // Load inventory on page start
 displayInventory();
+updateCoinsDisplay();
