@@ -100,6 +100,10 @@ function displayInventory() {
 
     grid.appendChild(div);
   }
+
+  function updateCoinsDisplay() {
+  document.getElementById("coins").innerText = `Coins: ${coins}`;
+}
 }
 
 // Load inventory on page start
