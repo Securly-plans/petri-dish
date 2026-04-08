@@ -18,18 +18,24 @@ function openPack() {
   const resultDiv = document.getElementById("result");
   const button = document.querySelector("button");
 
+  clickSound.play(); // click sound
   button.disabled = true;
 
   const rarities = ["Common", "Uncommon", "Rare", "Epic", "Legendary"];
   let spinCount = 0;
+
+  rollSound.loop = true;
+  rollSound.currentTime = 0;
+  rollSound.play();
 
   let animation = setInterval(() => {
     let randomRarity = rarities[Math.floor(Math.random() * rarities.length)];
     resultDiv.innerHTML = `Rolling... <span class="${randomRarity}">${randomRarity}</span>`;
     spinCount++;
 
-    if (spinCount > 15) { // how long it spins
+    if (spinCount > 15) {
       clearInterval(animation);
+      rollSound.pause();
 
       // FINAL RNG
       let roll = Math.random();
@@ -44,7 +50,7 @@ function openPack() {
       let pool = microbes[rarity];
       let reward = pool[Math.floor(Math.random() * pool.length)];
 
-      // Add to inventory
+      // Save inventory
       if (!inventory[reward]) {
         inventory[reward] = { count: 1, rarity: rarity };
       } else {
@@ -53,17 +59,20 @@ function openPack() {
 
       localStorage.setItem("inventory", JSON.stringify(inventory));
 
-      // FINAL DISPLAY
+      // PLAY SOUND BASED ON RARITY
+      if (rarity === "Epic" || rarity === "Legendary") {
+        rareSound.play();
+      } else {
+        revealSound.play();
+      }
+
+      // Show result
       resultDiv.innerHTML = `
         <div class="reveal ${rarity}">
           ${rarity}!<br>${reward}
         </div>
       `;
 
-      if (rarity === "Epic" || rarity === "Legendary") {
-  document.body.classList.add("flash");
-  setTimeout(() => document.body.classList.remove("flash"), 300);
-} 
       button.disabled = false;
       displayInventory();
     }
