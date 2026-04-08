@@ -75,6 +75,19 @@ function openPack() {
         </div>
       `;
 
+// Reward coins based on rarity
+let rewardCoins = 0;
+
+if (rarity === "Common") rewardCoins = 5;
+else if (rarity === "Uncommon") rewardCoins = 10;
+else if (rarity === "Rare") rewardCoins = 20;
+else if (rarity === "Epic") rewardCoins = 50;
+else if (rarity === "Legendary") rewardCoins = 100;
+
+coins += rewardCoins;
+localStorage.setItem("coins", coins);
+updateCoinsDisplay();
+      
       button.disabled = false;
       displayInventory();
     }
@@ -103,7 +116,19 @@ function displayInventory() {
 
   function updateCoinsDisplay() {
   document.getElementById("coins").innerText = `Coins: ${coins}`;
+
+  const packCost = 20;
+
+if (coins < packCost) {
+  alert("Not enough coins!");
+  return;
 }
+
+coins -= packCost;
+localStorage.setItem("coins", coins);
+updateCoinsDisplay();
+    
+  }
 }
 
 // Load inventory on page start
