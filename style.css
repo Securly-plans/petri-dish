@@ -69,3 +69,24 @@ button:hover {
 .Rare { background: #2980b9; }
 .Epic { background: #8e44ad; }
 .Legendary { background: gold; color: black; font-weight: bold; }
+
+/* Rolling text */
+#result span {
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Final reveal animation */
+.reveal {
+  margin-top: 15px;
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 20px;
+  animation: pop 0.4s ease;
+}
+
+/* Pop effect */
+@keyframes pop {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
