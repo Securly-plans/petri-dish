@@ -11,6 +11,8 @@ const microbes = {
   Legendary: ["Tardigrade 🐻‍❄️"]
 };
 
+let coins = parseInt(localStorage.getItem("coins")) || 100;
+
 // Load inventory or create new one
 let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
 
