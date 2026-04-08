@@ -55,6 +55,10 @@ function openPack() {
         </div>
       `;
 
+      if (rarity === "Epic" || rarity === "Legendary") {
+  document.body.classList.add("flash");
+  setTimeout(() => document.body.classList.remove("flash"), 300);
+} 
       button.disabled = false;
       displayInventory();
     }
