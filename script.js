@@ -1,3 +1,14 @@
+const microbeImages = {
+  "E. coli": "images/e_coli.svg",
+  "Streptococcus": "images/streptococcus.svg",
+  "Lactobacillus": "images/lactobacillus.svg",
+  "Salmonella": "images/salmonella.svg",
+  "Clostridium": "images/clostridium.svg",
+  "Plasmodium": "images/plasmodium.svg",
+  "Toxoplasma": "images/toxoplasma.svg",
+  "Deinococcus radiodurans": "images/deinococcus.svg",
+  "Tardigrade 🐻‍❄️": "images/tardigrade.svg"
+};
 
 // 🎵 SOUNDS
 const clickSound = new Audio("justsomesounds-click-sound-432501.mp3");
