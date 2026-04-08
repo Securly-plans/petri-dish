@@ -40,15 +40,22 @@ function openPack() {
 
 function displayInventory() {
   let container = document.getElementById("inventory");
-  container.innerHTML = "<h2>Your Collection</h2>";
+
+  container.innerHTML = "<h2>Your Collection</h2><div class='inventory-grid'></div>";
+  let grid = container.querySelector(".inventory-grid");
 
   for (let microbe in inventory) {
     let item = inventory[microbe];
-    container.innerHTML += `
-      <div>
-        ${microbe} (${item.rarity}) x${item.count}
-      </div>
+
+    let div = document.createElement("div");
+    div.className = `card ${item.rarity}`;
+    div.innerHTML = `
+      <strong>${microbe}</strong><br>
+      ${item.rarity}<br>
+      x${item.count}
     `;
+
+    grid.appendChild(div);
   }
 }
 
