@@ -131,6 +131,19 @@ button:hover {
   font-size: 20px;
   margin-bottom: 15px;
 }
+
+.pack-select {
+  margin-bottom: 10px;
+}
+
+.pack-select button {
+  margin: 5px;
+}
+
+#pack-info {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
 @keyframes flash {
   0% { background-color: white; }
   100% { background-color: transparent; }
