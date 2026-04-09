@@ -243,7 +243,7 @@ resultDiv.innerHTML = `
 updateCoinsDisplay();
 updatePackInfo();
 displayInventory();
-
+applyPackTheme();
 // 🔓 Fix autoplay sound restriction
 document.body.addEventListener("click", () => {
   clickSound.play().catch(() => {});
