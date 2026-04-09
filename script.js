@@ -1,3 +1,19 @@
+// 🎵 SOUNDS
+const clickSound = new Audio("justsomesounds-click-sound-432501.mp3");
+const rollSound = new Audio("u_a4gfvwagf1-tick-sound-effect-1-336779.mp3");
+const revealSound = new Audio("minecraft-xp.mp3");
+const rareSound = new Audio("mrstokes302-success-videogame-sfx-423626.mp3");
+
+// 🧬 MICROBE DATA
+const microbes = {
+  Common: ["E. coli", "Streptococcus", "Lactobacillus"],
+  Uncommon: ["Salmonella", "Clostridium"],
+  Rare: ["Plasmodium", "Toxoplasma"],
+  Epic: ["Deinococcus radiodurans"],
+  Legendary: ["Tardigrade 🐻‍❄️"]
+};
+
+// 🖼️ IMAGE MAP (SVG supported)
 const microbeImages = {
   "E. coli": "images/E. coli.svg",
   "Streptococcus": "images/Streptococcus.svg",
@@ -10,6 +26,7 @@ const microbeImages = {
   "Tardigrade 🐻‍❄️": "images/Tardigrade.svg"
 };
 
+// 🎁 PACK SYSTEM
 const packs = {
   "MicroLoot": {
     cost: 20,
@@ -47,21 +64,6 @@ const packs = {
 
 let currentPack = "MicroLoot";
 
-// 🎵 SOUNDS
-const clickSound = new Audio("justsomesounds-click-sound-432501.mp3");
-const rollSound = new Audio("u_a4gfvwagf1-tick-sound-effect-1-336779.mp3");
-const revealSound = new Audio("minecraft-xp.mp3");
-const rareSound = new Audio("mrstokes302-success-videogame-sfx-423626.mp3");
-
-// 🦠 MICROBE DATA
-const microbes = {
-  Common: ["E. coli", "Streptococcus", "Lactobacillus"],
-  Uncommon: ["Salmonella", "Clostridium"],
-  Rare: ["Plasmodium", "Toxoplasma"],
-  Epic: ["Deinococcus radiodurans"],
-  Legendary: ["Tardigrade 🐻‍❄️"]
-};
-
 // 💾 LOAD DATA
 let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
 let coins = parseInt(localStorage.getItem("coins")) || 100;
@@ -71,7 +73,23 @@ function updateCoinsDisplay() {
   document.getElementById("coins").innerText = `Coins: ${coins}`;
 }
 
-// 📦 DISPLAY INVENTORY
+// 🎁 UPDATE PACK INFO
+function updatePackInfo() {
+  const pack = packs[currentPack];
+
+  document.getElementById("pack-info").innerHTML = `
+    <strong>${currentPack}</strong><br>
+    Cost: ${pack.cost} coins
+  `;
+}
+
+// 🎯 SELECT PACK
+function selectPack(packName) {
+  currentPack = packName;
+  updatePackInfo();
+}
+
+// 📦 DISPLAY INVENTORY (BLOOK STYLE)
 function displayInventory() {
   let container = document.getElementById("inventory");
 
@@ -94,12 +112,13 @@ function displayInventory() {
   }
 }
 
-// 🎲 OPEN PACK FUNCTION
+// 🎲 OPEN PACK
 function openPack() {
   const resultDiv = document.getElementById("result");
-  const button = document.querySelector("button");
+  const button = document.querySelector(".pack-box button");
 
-  const packCost = 20;
+  const pack = packs[currentPack];
+  const packCost = pack.cost;
 
   // ❌ Not enough coins
   if (coins < packCost) {
@@ -118,7 +137,7 @@ function openPack() {
   const rarities = ["Common", "Uncommon", "Rare", "Epic", "Legendary"];
   let spinCount = 0;
 
-  // 🔊 Start rolling sound
+  // 🔊 Rolling sound
   rollSound.loop = true;
   rollSound.currentTime = 0;
   rollSound.volume = 0.3;
@@ -133,15 +152,18 @@ function openPack() {
       clearInterval(animation);
       rollSound.pause();
 
-      // 🎯 FINAL RNG
+      // 🎯 PACK-BASED RNG
       let roll = Math.random();
+      let cumulative = 0;
       let rarity;
 
-      if (roll < 0.60) rarity = "Common";
-      else if (roll < 0.85) rarity = "Uncommon";
-      else if (roll < 0.95) rarity = "Rare";
-      else if (roll < 0.99) rarity = "Epic";
-      else rarity = "Legendary";
+      for (let r in pack.odds) {
+        cumulative += pack.odds[r];
+        if (roll <= cumulative) {
+          rarity = r;
+          break;
+        }
+      }
 
       let pool = microbes[rarity];
       let reward = pool[Math.floor(Math.random() * pool.length)];
@@ -168,26 +190,25 @@ function openPack() {
       localStorage.setItem("coins", coins);
       updateCoinsDisplay();
 
-      // 🔊 PLAY SOUND
+      // 🔊 SOUND
       if (rarity === "Epic" || rarity === "Legendary") {
         rareSound.volume = 0.6;
         rareSound.play();
 
-        // ⚡ screen flash
         document.body.classList.add("flash");
         setTimeout(() => document.body.classList.remove("flash"), 300);
       } else {
         revealSound.play();
       }
 
-      // 🎉 SHOW RESULT
-     resultDiv.innerHTML = `
-  <div class="reveal ${rarity}">
-    <img src="${microbeImages[reward]}" class="reveal-img"><br>
-    <div>${rarity}</div>
-    <strong>${reward}</strong>
-  </div>
-`;
+      // 🎉 SHOW RESULT (WITH IMAGE)
+      resultDiv.innerHTML = `
+        <div class="reveal ${rarity}">
+          <img src="${microbeImages[reward]}" class="reveal-img"><br>
+          <div>${rarity}</div>
+          <strong>${reward}</strong>
+        </div>
+      `;
 
       button.disabled = false;
       displayInventory();
@@ -195,25 +216,12 @@ function openPack() {
   }, 100);
 }
 
-function selectPack(packName) {
-  currentPack = packName;
-  updatePackInfo();
-}
-
-function updatePackInfo() {
-  const pack = packs[currentPack];
-
-  document.getElementById("pack-info").innerHTML = `
-    <strong>${currentPack}</strong><br>
-    Cost: ${pack.cost} coins
-  `;
-}
-
 // 🚀 INITIAL LOAD
 updateCoinsDisplay();
+updatePackInfo();
 displayInventory();
 
-// 🔓 Fix for browser sound restrictions
+// 🔓 Fix autoplay sound restriction
 document.body.addEventListener("click", () => {
   clickSound.play().catch(() => {});
 }, { once: true });
