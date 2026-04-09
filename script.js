@@ -10,6 +10,41 @@ const microbeImages = {
   "Tardigrade 🐻‍❄️": "images/Tardigrade.svg"
 };
 
+const packs = {
+  "MicroLoot": {
+    cost: 20,
+    odds: {
+      Common: 0.65,
+      Uncommon: 0.25,
+      Rare: 0.08,
+      Epic: 0.019,
+      Legendary: 0.001
+    }
+  },
+
+  "BioBox": {
+    cost: 50,
+    odds: {
+      Common: 0.40,
+      Uncommon: 0.35,
+      Rare: 0.18,
+      Epic: 0.06,
+      Legendary: 0.01
+    }
+  },
+
+  "CellCraze": {
+    cost: 100,
+    odds: {
+      Common: 0.20,
+      Uncommon: 0.30,
+      Rare: 0.30,
+      Epic: 0.15,
+      Legendary: 0.05
+    }
+  }
+};
+
 // 🎵 SOUNDS
 const clickSound = new Audio("justsomesounds-click-sound-432501.mp3");
 const rollSound = new Audio("u_a4gfvwagf1-tick-sound-effect-1-336779.mp3");
