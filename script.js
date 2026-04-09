@@ -154,6 +154,7 @@ function openPack() {
   updateCoinsDisplay();
 
   clickSound.play();
+  
   button.disabled = true;
 
   const rarities = ["Common", "Uncommon", "Rare", "Epic", "Legendary"];
@@ -238,13 +239,18 @@ if (rarity === "Legendary") {
       }
 
       // 🎉 RESULT (WITH THEME)
-      resultDiv.innerHTML = `
-        <div class="reveal ${rarity}" style="box-shadow:${pack.glow}; border:2px solid ${pack.color}">
-          <img src="${microbeImages[reward]}" class="reveal-img"><br>
-          <div>${rarity}</div>
-          <strong>${reward}</strong>
-        </div>
-      `;
+     let extraClass = "";
+if (rarity === "Legendary") {
+  extraClass = "legendary-glow legendary-reveal";
+}
+
+resultDiv.innerHTML = `
+  <div class="reveal ${rarity} ${extraClass}" style="box-shadow:${pack.glow}; border:2px solid ${pack.color}">
+    <img src="${microbeImages[reward]}" class="reveal-img"><br>
+    <div>${rarity}</div>
+    <strong>${reward}</strong>
+  </div>
+`;
 
       button.disabled = false;
       displayInventory();
