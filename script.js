@@ -195,6 +195,20 @@ function openPack() {
   }, 100);
 }
 
+function selectPack(packName) {
+  currentPack = packName;
+  updatePackInfo();
+}
+
+function updatePackInfo() {
+  const pack = packs[currentPack];
+
+  document.getElementById("pack-info").innerHTML = `
+    <strong>${currentPack}</strong><br>
+    Cost: ${pack.cost} coins
+  `;
+}
+
 // 🚀 INITIAL LOAD
 updateCoinsDisplay();
 displayInventory();
