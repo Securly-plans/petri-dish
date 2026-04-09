@@ -6,7 +6,7 @@ const microbeImages = {
   "Clostridium": "images/Clostridium.svg",
   "Plasmodium": "images/Plasmodium.svg",
   "Toxoplasma": "images/Toxoplasma.svg",
-  "Deinococcus radiodurans": "images/Deinococcus.svg",
+  "Deinococcus radiodurans": "images/Deinococcus radiodurans.svg",
   "Tardigrade 🐻‍❄️": "images/Tardigrade.svg"
 };
 
