@@ -222,8 +222,10 @@ function openPack() {
       }
 
       // 🎉 SHOW RESULT (WITH IMAGE)
-      resultDiv.innerHTML = `
-        <div class="reveal ${rarity}">
+      const pack = packs[currentPack];
+      
+resultDiv.innerHTML = `
+  <div class="reveal ${rarity}" style="box-shadow:${pack.glow}; border:2px solid ${pack.color}">
           <img src="${microbeImages[reward]}" class="reveal-img"><br>
           <div>${rarity}</div>
           <strong>${reward}</strong>
