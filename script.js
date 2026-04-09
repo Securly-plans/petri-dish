@@ -45,6 +45,8 @@ const packs = {
   }
 };
 
+let currentPack = "MicroLoot";
+
 // 🎵 SOUNDS
 const clickSound = new Audio("justsomesounds-click-sound-432501.mp3");
 const rollSound = new Audio("u_a4gfvwagf1-tick-sound-effect-1-336779.mp3");
