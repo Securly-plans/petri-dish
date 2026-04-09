@@ -148,3 +148,7 @@ button:hover {
   0% { background-color: white; }
   100% { background-color: transparent; }
 }
+
+body.pack-glow {
+  transition: background 0.3s;
+}
