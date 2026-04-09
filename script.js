@@ -212,9 +212,24 @@ function openPack() {
       updateCoinsDisplay();
 
       // 🔊 SOUND + FLASH
-      if (rarity === "Epic" || rarity === "Legendary") {
-        rareSound.volume = 0.6;
-        rareSound.play();
+if (rarity === "Legendary") {
+  rareSound.volume = 0.8;
+  rareSound.play();
+
+  // 💥 screen shake
+  document.body.classList.add("shake");
+  setTimeout(() => document.body.classList.remove("shake"), 400);
+
+  // ⚡ flash
+  document.body.classList.add("flash");
+  setTimeout(() => document.body.classList.remove("flash"), 300);
+
+} else if (rarity === "Epic") {
+  rareSound.volume = 0.5;
+  rareSound.play();
+} else {
+  revealSound.play();
+}
 
         document.body.classList.add("flash");
         setTimeout(() => document.body.classList.remove("flash"), 300);
