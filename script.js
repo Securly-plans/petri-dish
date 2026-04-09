@@ -13,17 +13,17 @@ const microbes = {
   Legendary: ["Tardigrade 🐻‍❄️"]
 };
 
-// 🖼️ IMAGE MAP
+//IMAGE MAP
 const microbeImages = {
-  "E. coli": "images/E. coli.svg",
-  "Streptococcus": "images/Streptococcus.svg",
-  "Lactobacillus": "images/Lactobacillus.svg",
-  "Salmonella": "images/Salmonella.svg",
-  "Clostridium": "images/Clostridium.svg",
-  "Plasmodium": "images/Plasmodium.svg",
-  "Toxoplasma": "images/Toxoplasma.svg",
-  "Deinococcus radiodurans": "images/Deinococcus radiodurans.svg",
-  "Tardigrade 🐻‍❄️": "images/Tardigrade.svg"
+  "E. coli": "images/e_coli.svg",
+  "Streptococcus": "images/streptococcus.svg",
+  "Lactobacillus": "images/lactobacillus.svg",
+  "Salmonella": "images/salmonella.svg",
+  "Clostridium": "images/clostridium.svg",
+  "Plasmodium": "images/plasmodium.svg",
+  "Toxoplasma": "images/toxoplasma.svg",
+  "Deinococcus radiodurans": "images/deinococcus.svg",
+  "Tardigrade 🐻‍❄️": "images/tardigrade.svg"
 };
 
 // 🎁 PACK SYSTEM (WITH THEMES)
