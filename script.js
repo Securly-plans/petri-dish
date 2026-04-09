@@ -93,6 +93,20 @@ function updatePackInfo() {
 function selectPack(packName) {
   currentPack = packName;
   updatePackInfo();
+  applyPackTheme();
+}
+
+function applyPackTheme() {
+  const pack = packs[currentPack];
+  const box = document.querySelector(".pack-box");
+
+  // Change box color + glow
+  box.style.border = `2px solid ${pack.color}`;
+  box.style.boxShadow = pack.glow;
+
+  // Change button color
+  const button = box.querySelector("button");
+  button.style.background = pack.color;
 }
 
 // 📦 DISPLAY INVENTORY (BLOOK STYLE)
