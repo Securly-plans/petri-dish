@@ -99,7 +99,8 @@ function selectPack(packName) {
 function applyPackTheme() {
   const pack = packs[currentPack];
   const box = document.querySelector(".pack-box");
-
+document.body.style.background = `radial-gradient(circle, ${pack.color}33, #0f2027)`;
+  
   // Change box color + glow
   box.style.border = `2px solid ${pack.color}`;
   box.style.boxShadow = pack.glow;
