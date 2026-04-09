@@ -30,6 +30,8 @@ const microbeImages = {
 const packs = {
   "MicroLoot": {
     cost: 20,
+    color: "#27ae60",
+    glow: "0 0 20px #27ae60",
     odds: {
       Common: 0.65,
       Uncommon: 0.25,
@@ -41,6 +43,8 @@ const packs = {
 
   "BioBox": {
     cost: 50,
+    color: "#2980b9",
+    glow: "0 0 20px #2980b9",
     odds: {
       Common: 0.40,
       Uncommon: 0.35,
@@ -52,6 +56,8 @@ const packs = {
 
   "CellCraze": {
     cost: 100,
+    color: "#8e44ad",
+    glow: "0 0 25px #8e44ad",
     odds: {
       Common: 0.20,
       Uncommon: 0.30,
