@@ -1,8 +1,8 @@
 // 🎵 SOUNDS
-const clickSound = new Audio("justsomesounds-click-sound-432501.mp3");
-const rollSound = new Audio("u_a4gfvwagf1-tick-sound-effect-1-336779.mp3");
-const revealSound = new Audio("minecraft-xp.mp3");
-const rareSound = new Audio("mrstokes302-success-videogame-sfx-423626.mp3");
+const clickSound = new Audio("sounds/click.mp3");
+const rollSound = new Audio("sounds/roll.mp3");
+const revealSound = new Audio("sounds/reveal.mp3");
+const rareSound = new Audio("sounds/rare.mp3");
 
 // 🧬 MICROBE DATA
 const microbes = {
@@ -15,15 +15,15 @@ const microbes = {
 
 // 🖼️ IMAGE MAP
 const microbeImages = {
-  "E. coli": "images/E. coli.svg",
-  "Streptococcus": "images/Streptococcus.svg",
-  "Lactobacillus": "images/Lactobacillus.svg",
-  "Salmonella": "images/Salmonella.svg",
-  "Clostridium": "images/Clostridium.svg",
-  "Plasmodium": "images/Plasmodium.svg",
-  "Toxoplasma": "images/Toxoplasma.svg",
-  "Deinococcus radiodurans": "images/Deinococcus radiodurans.svg",
-  "Tardigrade 🐻‍❄️": "images/Tardigrade.svg"
+  "E. coli": "images/e_coli.svg",
+  "Streptococcus": "images/streptococcus.svg",
+  "Lactobacillus": "images/lactobacillus.svg",
+  "Salmonella": "images/salmonella.svg",
+  "Clostridium": "images/clostridium.svg",
+  "Plasmodium": "images/plasmodium.svg",
+  "Toxoplasma": "images/toxoplasma.svg",
+  "Deinococcus radiodurans": "images/deinococcus.svg",
+  "Tardigrade 🐻‍❄️": "images/tardigrade.svg"
 };
 
 // 🎁 PACK SYSTEM (WITH THEMES)
@@ -94,15 +94,12 @@ function applyPackTheme() {
   const pack = packs[currentPack];
   const box = document.querySelector(".pack-box");
 
-  // Box styling
   box.style.border = `2px solid ${pack.color}`;
   box.style.boxShadow = pack.glow;
 
-  // Button color
   const button = box.querySelector("button");
   button.style.background = pack.color;
 
-  // Background glow
   document.body.style.background = `radial-gradient(circle, ${pack.color}33, #0f2027)`;
 }
 
@@ -154,7 +151,6 @@ function openPack() {
   updateCoinsDisplay();
 
   clickSound.play();
-  
   button.disabled = true;
 
   const rarities = ["Common", "Uncommon", "Rare", "Epic", "Legendary"];
@@ -212,45 +208,37 @@ function openPack() {
       localStorage.setItem("coins", coins);
       updateCoinsDisplay();
 
-      // 🔊 SOUND + FLASH
-if (rarity === "Legendary") {
-  rareSound.volume = 0.8;
-  rareSound.play();
+      // 🔊 SOUND + EFFECTS
+      if (rarity === "Legendary") {
+        rareSound.volume = 0.8;
+        rareSound.play();
 
-  // 💥 screen shake
-  document.body.classList.add("shake");
-  setTimeout(() => document.body.classList.remove("shake"), 400);
-
-  // ⚡ flash
-  document.body.classList.add("flash");
-  setTimeout(() => document.body.classList.remove("flash"), 300);
-
-} else if (rarity === "Epic") {
-  rareSound.volume = 0.5;
-  rareSound.play();
-} else {
-  revealSound.play();
-}
+        document.body.classList.add("shake");
+        setTimeout(() => document.body.classList.remove("shake"), 400);
 
         document.body.classList.add("flash");
         setTimeout(() => document.body.classList.remove("flash"), 300);
+
+      } else if (rarity === "Epic") {
+        rareSound.volume = 0.5;
+        rareSound.play();
       } else {
         revealSound.play();
       }
 
-      // 🎉 RESULT (WITH THEME)
-     let extraClass = "";
-if (rarity === "Legendary") {
-  extraClass = "legendary-glow legendary-reveal";
-}
+      // 🎉 RESULT DISPLAY
+      let extraClass = "";
+      if (rarity === "Legendary") {
+        extraClass = "legendary-glow legendary-reveal";
+      }
 
-resultDiv.innerHTML = `
-  <div class="reveal ${rarity} ${extraClass}" style="box-shadow:${pack.glow}; border:2px solid ${pack.color}">
-    <img src="${microbeImages[reward]}" class="reveal-img"><br>
-    <div>${rarity}</div>
-    <strong>${reward}</strong>
-  </div>
-`;
+      resultDiv.innerHTML = `
+        <div class="reveal ${rarity} ${extraClass}" style="box-shadow:${pack.glow}; border:2px solid ${pack.color}">
+          <img src="${microbeImages[reward]}" class="reveal-img"><br>
+          <div>${rarity}</div>
+          <strong>${reward}</strong>
+        </div>
+      `;
 
       button.disabled = false;
       displayInventory();
