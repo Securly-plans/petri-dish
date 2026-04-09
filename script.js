@@ -13,7 +13,7 @@ const microbes = {
   Legendary: ["Tardigrade 🐻‍❄️"]
 };
 
-// 🖼️ IMAGE MAP (SVG supported)
+// 🖼️ IMAGE MAP
 const microbeImages = {
   "E. coli": "images/E. coli.svg",
   "Streptococcus": "images/Streptococcus.svg",
@@ -26,7 +26,7 @@ const microbeImages = {
   "Tardigrade 🐻‍❄️": "images/Tardigrade.svg"
 };
 
-// 🎁 PACK SYSTEM
+// 🎁 PACK SYSTEM (WITH THEMES)
 const packs = {
   "MicroLoot": {
     cost: 20,
@@ -74,7 +74,7 @@ let currentPack = "MicroLoot";
 let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
 let coins = parseInt(localStorage.getItem("coins")) || 100;
 
-// 💰 UPDATE COINS DISPLAY
+// 💰 UPDATE COINS
 function updateCoinsDisplay() {
   document.getElementById("coins").innerText = `Coins: ${coins}`;
 }
@@ -89,6 +89,23 @@ function updatePackInfo() {
   `;
 }
 
+// 🎨 APPLY PACK THEME
+function applyPackTheme() {
+  const pack = packs[currentPack];
+  const box = document.querySelector(".pack-box");
+
+  // Box styling
+  box.style.border = `2px solid ${pack.color}`;
+  box.style.boxShadow = pack.glow;
+
+  // Button color
+  const button = box.querySelector("button");
+  button.style.background = pack.color;
+
+  // Background glow
+  document.body.style.background = `radial-gradient(circle, ${pack.color}33, #0f2027)`;
+}
+
 // 🎯 SELECT PACK
 function selectPack(packName) {
   currentPack = packName;
@@ -96,21 +113,7 @@ function selectPack(packName) {
   applyPackTheme();
 }
 
-function applyPackTheme() {
-  const pack = packs[currentPack];
-  const box = document.querySelector(".pack-box");
-document.body.style.background = `radial-gradient(circle, ${pack.color}33, #0f2027)`;
-  
-  // Change box color + glow
-  box.style.border = `2px solid ${pack.color}`;
-  box.style.boxShadow = pack.glow;
-
-  // Change button color
-  const button = box.querySelector("button");
-  button.style.background = pack.color;
-}
-
-// 📦 DISPLAY INVENTORY (BLOOK STYLE)
+// 📦 DISPLAY INVENTORY
 function displayInventory() {
   let container = document.getElementById("inventory");
 
@@ -141,13 +144,11 @@ function openPack() {
   const pack = packs[currentPack];
   const packCost = pack.cost;
 
-  // ❌ Not enough coins
   if (coins < packCost) {
     alert("Not enough coins!");
     return;
   }
 
-  // 💸 Spend coins
   coins -= packCost;
   localStorage.setItem("coins", coins);
   updateCoinsDisplay();
@@ -158,7 +159,6 @@ function openPack() {
   const rarities = ["Common", "Uncommon", "Rare", "Epic", "Legendary"];
   let spinCount = 0;
 
-  // 🔊 Rolling sound
   rollSound.loop = true;
   rollSound.currentTime = 0;
   rollSound.volume = 0.3;
@@ -173,7 +173,7 @@ function openPack() {
       clearInterval(animation);
       rollSound.pause();
 
-      // 🎯 PACK-BASED RNG
+      // 🎯 PACK RNG
       let roll = Math.random();
       let cumulative = 0;
       let rarity;
@@ -211,7 +211,7 @@ function openPack() {
       localStorage.setItem("coins", coins);
       updateCoinsDisplay();
 
-      // 🔊 SOUND
+      // 🔊 SOUND + FLASH
       if (rarity === "Epic" || rarity === "Legendary") {
         rareSound.volume = 0.6;
         rareSound.play();
@@ -222,11 +222,9 @@ function openPack() {
         revealSound.play();
       }
 
-      // 🎉 SHOW RESULT (WITH IMAGE)
-      const pack = packs[currentPack];
-      
-resultDiv.innerHTML = `
-  <div class="reveal ${rarity}" style="box-shadow:${pack.glow}; border:2px solid ${pack.color}">
+      // 🎉 RESULT (WITH THEME)
+      resultDiv.innerHTML = `
+        <div class="reveal ${rarity}" style="box-shadow:${pack.glow}; border:2px solid ${pack.color}">
           <img src="${microbeImages[reward]}" class="reveal-img"><br>
           <div>${rarity}</div>
           <strong>${reward}</strong>
@@ -239,12 +237,13 @@ resultDiv.innerHTML = `
   }, 100);
 }
 
-// 🚀 INITIAL LOAD
+// 🚀 INIT
 updateCoinsDisplay();
 updatePackInfo();
-displayInventory();
 applyPackTheme();
-// 🔓 Fix autoplay sound restriction
+displayInventory();
+
+// 🔓 SOUND FIX
 document.body.addEventListener("click", () => {
   clickSound.play().catch(() => {});
 }, { once: true });
