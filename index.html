@@ -14,6 +14,15 @@
     
     <div class="pack-box">
       <p>Open a Petri Pack!</p>
+
+      <div class="pack-select">
+  <button onclick="selectPack('MicroLoot')">MicroLoot</button>
+  <button onclick="selectPack('BioBox')">BioBox</button>
+  <button onclick="selectPack('CellCraze')">CellCraze</button>
+</div>
+
+<div id="pack-info"></div>
+      
       <button onclick="openPack()">Open Pack</button>
       <div id="result"></div>
     </div>
