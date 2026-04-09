@@ -15,8 +15,6 @@ const microbes = {
 
 // 🖼️ IMAGE MAP
 const microbeImages = {
-
-const microbeImages = {
   "E. coli": "images/E. coli.svg",
   "Streptococcus": "images/Streptococcus.svg",
   "Lactobacillus": "images/Lactobacillus.svg",
