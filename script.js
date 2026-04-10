@@ -133,6 +133,14 @@ function displayInventory() {
   }
 }
 
+function updateCollectionProgress() {
+  const total = Object.values(microbes).flat().length;
+  const owned = Object.keys(inventory).length;
+
+  document.getElementById("collection-progress").innerText =
+    `Collection: ${owned} / ${total}`;
+}
+
 // 🎲 OPEN PACK
 function openPack() {
   const resultDiv = document.getElementById("result");
