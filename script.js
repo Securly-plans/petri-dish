@@ -266,6 +266,7 @@ updateCoinsDisplay();
 updatePackInfo();
 applyPackTheme();
 displayInventory();
+updateCollectionProgress();
 
 // 🔓 SOUND FIX
 document.body.addEventListener("click", () => {
