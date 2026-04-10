@@ -188,6 +188,8 @@ function openPack() {
         if (roll <= cumulative) {
           rarity = r;
           break;
+       
+        updateCollectionProgress(); 
         }
       }
 
