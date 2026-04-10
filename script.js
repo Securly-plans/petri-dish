@@ -132,8 +132,9 @@ function displayInventory() {
   for (let microbe in inventory) {
     let item = inventory[microbe];
 
-    let div = document.createElement("div");
-    div.className = `card ${item.rarity}`;
+let div = document.createElement("div");
+div.className = `card ${item.rarity}`;
+div.onclick = () => showInfo(microbe);
 
     div.innerHTML = `
       <img src="${microbeImages[microbe]}" class="microbe-img"><br>
