@@ -138,20 +138,37 @@ function displayInventory() {
   container.innerHTML = "<h2>Your Collection</h2><div class='inventory-grid'></div>";
   let grid = container.querySelector(".inventory-grid");
 
-  for (let microbe in inventory) {
-    let item = inventory[microbe];
+  // loop ALL microbes, not just owned
+  for (let rarity in microbes) {
+    microbes[rarity].forEach(microbe => {
 
-    let div = document.createElement("div");
-    div.className = `card ${item.rarity}`;
-    div.onclick = () => showInfo(microbe);
+      let owned = inventory[microbe];
 
-    div.innerHTML = `
-      <img src="${microbeImages[microbe]}" class="microbe-img"><br>
-      <strong>${microbe}</strong><br>
-      x${item.count}
-    `;
+      let div = document.createElement("div");
+      div.className = `card ${rarity}`;
 
-    grid.appendChild(div);
+      if (owned) {
+        // ✅ OWNED
+        div.onclick = () => showInfo(microbe);
+
+        div.innerHTML = `
+          <img src="${microbeImages[microbe]}" class="microbe-img"><br>
+          <strong>${microbe}</strong><br>
+          x${owned.count}
+        `;
+      } else {
+        // 🔒 LOCKED
+        div.classList.add("locked");
+
+        div.innerHTML = `
+          <img src="images/unknown.svg" class="microbe-img locked-img"><br>
+          <strong>???</strong><br>
+          <span class="rarity-label">${rarity}</span>
+        `;
+      }
+
+      grid.appendChild(div);
+    });
   }
 }
 
