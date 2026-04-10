@@ -287,6 +287,11 @@ function openPack() {
         </div>
       `;
 
+if (isNew) {
+  document.body.classList.add("flash");
+  setTimeout(() => document.body.classList.remove("flash"), 300);
+}
+      
       button.disabled = false;
       displayInventory();
       updateCollectionProgress();
