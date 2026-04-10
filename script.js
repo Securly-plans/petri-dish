@@ -165,16 +165,11 @@ function showInfo(name) {
     microbeInfo[name] || "No data yet.";
   document.getElementById("info-img").src = microbeImages[name];
 
-  document.getElementById("info-panel").classList.remove("hidden");
+  document.getElementById("info-panel").classList.add("active");
 }
 
 function closeInfo() {
-  document.getElementById("info-panel").classList.add("hidden");
-document.getElementById("info-panel").addEventListener("click", (e) => {
-  if (e.target.id === "info-panel") {
-    closeInfo();
-  }
-});
+  document.getElementById("info-panel").classList.remove("active");
 }
 
 // 🎲 OPEN PACK
