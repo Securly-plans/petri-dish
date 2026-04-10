@@ -80,6 +80,13 @@ const microbeInfo = {
   "Tardigrade 🐻‍❄️": "A nearly indestructible microscopic organism."
 };
 
+const sellValues = {
+  Common: 5,
+  Uncommon: 10,
+  Rare: 30,
+  Epic: 50,
+  Legendary: 240
+};
 
 let currentPack = "MicroLoot";
 
@@ -151,11 +158,12 @@ function displayInventory() {
         // ✅ OWNED
         div.onclick = () => showInfo(microbe);
 
-        div.innerHTML = `
-          <img src="${microbeImages[microbe]}" class="microbe-img"><br>
-          <strong>${microbe}</strong><br>
-          x${owned.count}
-        `;
+      div.innerHTML = `
+  <img src="${microbeImages[microbe]}" class="microbe-img"><br>
+  <strong>${microbe}</strong><br>
+  x${owned.count}<br>
+  ${owned.count > 1 ? `<button class="sell-btn" onclick="sellMicrobe('${microbe}')">Sell</button>` : ""}
+`;
       } else {
         // 🔒 LOCKED
         div.classList.add("locked");
@@ -187,6 +195,27 @@ function showInfo(name) {
 
 function closeInfo() {
   document.getElementById("info-panel").classList.remove("active");
+}
+
+function sellMicrobe(name) {
+  const item = inventory[name];
+
+  // ❌ Don't allow selling last one
+  if (item.count <= 1) {
+    alert("You must keep at least 1!");
+    return;
+  }
+
+  item.count--;
+
+  const value = sellValues[item.rarity];
+  coins += value;
+
+  localStorage.setItem("coins", coins);
+  localStorage.setItem("inventory", JSON.stringify(inventory));
+
+  updateCoinsDisplay();
+  displayInventory();
 }
 
 // 🎲 OPEN PACK
