@@ -266,3 +266,12 @@ body.pack-glow {
   font-size: 12px;
   opacity: 0.7;
 }
+
+.flash {
+  animation: flash 0.3s;
+}
+
+@keyframes flash {
+  0% { background: white; }
+  100% { background: inherit; }
+}
