@@ -170,6 +170,11 @@ function showInfo(name) {
 
 function closeInfo() {
   document.getElementById("info-panel").classList.add("hidden");
+document.getElementById("info-panel").addEventListener("click", (e) => {
+  if (e.target.id === "info-panel") {
+    closeInfo();
+  }
+});
 }
 
 // 🎲 OPEN PACK
