@@ -198,3 +198,43 @@ button:hover {
 body.pack-glow {
   transition: background 0.3s;
 }
+
+/* Overlay */
+#info-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hidden state */
+.hidden {
+  display: none;
+}
+
+/* Content box */
+.info-content {
+  background: #1e2a38;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  width: 300px;
+}
+
+/* Image */
+#info-img {
+  width: 120px;
+  height: 120px;
+}
+
+/* Close button */
+.close-btn {
+  float: right;
+  cursor: pointer;
+  font-size: 18px;
+}
