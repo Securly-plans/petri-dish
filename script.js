@@ -68,6 +68,18 @@ const packs = {
   }
 };
 
+const microbeInfo = {
+  "E. coli": "A common bacterium found in the intestines.",
+  "Streptococcus": "Bacteria that can cause infections like strep throat.",
+  "Lactobacillus": "Helpful bacteria used in yogurt and digestion.",
+  "Salmonella": "A bacteria that can cause food poisoning.",
+  "Clostridium": "A group of bacteria, some cause serious illness.",
+  "Plasmodium": "A parasite that causes malaria.",
+  "Toxoplasma": "A parasite often carried by cats.",
+  "Deinococcus radiodurans": "Extremely resistant to radiation.",
+  "Tardigrade 🐻‍❄️": "A nearly indestructible microscopic organism."
+};
+
 let currentPack = "MicroLoot";
 
 // 💾 LOAD DATA
