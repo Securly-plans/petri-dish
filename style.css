@@ -275,3 +275,18 @@ body.pack-glow {
   0% { background: white; }
   100% { background: inherit; }
 }
+
+.sell-btn {
+  margin-top: 5px;
+  padding: 4px 8px;
+  font-size: 12px;
+  background: #e74c3c;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.sell-btn:hover {
+  background: #c0392b;
+}
