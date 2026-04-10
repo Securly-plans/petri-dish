@@ -205,6 +205,21 @@ function openPack() {
         }
       }
 
+      function showInfo(name) {
+  const info = inventory[name];
+
+  document.getElementById("info-name").innerText = name;
+  document.getElementById("info-rarity").innerText = info.rarity;
+  document.getElementById("info-desc").innerText = microbeInfo[name] || "No data yet.";
+  document.getElementById("info-img").src = microbeImages[name];
+
+  document.getElementById("info-panel").classList.remove("hidden");
+}
+
+function closeInfo() {
+  document.getElementById("info-panel").classList.add("hidden");
+}
+      
       let pool = microbes[rarity];
       let reward = pool[Math.floor(Math.random() * pool.length)];
 
