@@ -234,6 +234,11 @@ body.pack-glow {
 
 /* Close button */
 .close-btn {
+  
+  #info-panel {
+  z-index: 9999;
+}
+  
   float: right;
   cursor: pointer;
   font-size: 18px;
