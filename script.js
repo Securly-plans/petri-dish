@@ -162,7 +162,11 @@ function displayInventory() {
   <img src="${microbeImages[microbe]}" class="microbe-img"><br>
   <strong>${microbe}</strong><br>
   x${owned.count}<br>
-  ${owned.count > 1 ? `<button class="sell-btn" onclick="sellMicrobe('${microbe}')">Sell</button>` : ""}
+  
+  ${owned.count > 1 ? `
+    <button class="sell-btn" onclick="event.stopPropagation(); sellMicrobe('${microbe}')">
+      Sell
+    </button>` : ""}
 `;
       } else {
         // 🔒 LOCKED
