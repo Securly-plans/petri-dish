@@ -187,11 +187,14 @@ function openPack() {
       let reward = pool[Math.floor(Math.random() * pool.length)];
 
       // 📦 SAVE INVENTORY
-      if (!inventory[reward]) {
-        inventory[reward] = { count: 1, rarity: rarity };
-      } else {
-        inventory[reward].count++;
-      }
+     let isNew = false;
+
+if (!inventory[reward]) {
+  inventory[reward] = { count: 1, rarity: rarity };
+  isNew = true; // 🎉 first time unlock
+} else {
+  inventory[reward].count++;
+}
 
       localStorage.setItem("inventory", JSON.stringify(inventory));
 
@@ -227,19 +230,21 @@ function openPack() {
       }
 
       // 🎉 RESULT DISPLAY
-      let extraClass = "";
-      if (rarity === "Legendary") {
-        extraClass = "legendary-glow legendary-reveal";
-      }
+    let extraClass = "";
+if (rarity === "Legendary") {
+  extraClass = "legendary-glow legendary-reveal";
+}
 
-      resultDiv.innerHTML = `
-        <div class="reveal ${rarity} ${extraClass}" style="box-shadow:${pack.glow}; border:2px solid ${pack.color}">
-          <img src="${microbeImages[reward]}" class="reveal-img"><br>
-          <div>${rarity}</div>
-          <strong>${reward}</strong>
-        </div>
-      `;
+let newTag = isNew ? "<div class='new-tag'>NEW!</div>" : "";
 
+resultDiv.innerHTML = `
+  <div class="reveal ${rarity} ${extraClass}" style="box-shadow:${pack.glow}; border:2px solid ${pack.color}">
+    ${newTag}
+    <img src="${microbeImages[reward]}" class="reveal-img"><br>
+    <div>${rarity}</div>
+    <strong>${reward}</strong>
+  </div>
+`;
       button.disabled = false;
       displayInventory();
     }
