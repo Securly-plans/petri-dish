@@ -248,3 +248,17 @@ body.pack-glow {
   cursor: pointer;
   font-size: 18px;
 }
+
+.locked {
+  opacity: 0.6;
+  filter: grayscale(100%);
+}
+
+.locked-img {
+  filter: brightness(0);
+}
+
+.rarity-label {
+  font-size: 12px;
+  opacity: 0.7;
+}
