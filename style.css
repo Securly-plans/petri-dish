@@ -185,6 +185,16 @@ button:hover {
   100% { transform: scale(1.2); opacity: 1; }
 }
 
+.new-tag {
+  background: gold;
+  color: black;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-bottom: 5px;
+  animation: pop 0.3s ease;
+}
 body.pack-glow {
   transition: background 0.3s;
 }
